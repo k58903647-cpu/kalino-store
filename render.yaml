@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: kalino-store
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+    # SQLite persistence requires a paid persistent disk on Render.
+    # Without a disk, data can be reset on redeploy/restart.
